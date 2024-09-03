@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { GifItems } from "./GifItems";
 import { useFetchGifs } from "../hooks/useFetchGifs";
+import PropTypes from "prop-types";
 
-export const GifGrid = ({ category, key }) => {
+export const GifGrid = ({ category, itemKey }) => {
 
     const { images, isLoading } = useFetchGifs( category );
 
-    console.log(isLoading);
-
     return (
-            <div key={key}>
+            <div key={ itemKey }>
                 <h3>{ category }</h3>
                 {
                     isLoading && ( <h2>Cargando...</h2> )
@@ -22,4 +21,10 @@ export const GifGrid = ({ category, key }) => {
                 </div>
             </div>
     )
+}
+
+
+GifGrid.propTypes = {
+
+    category: PropTypes.string.isRequired
 }
